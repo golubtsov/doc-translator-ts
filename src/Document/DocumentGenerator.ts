@@ -41,7 +41,7 @@ export default abstract class DocumentGenerator {
 
   protected abstract splitBySentences(paragraph: string): Promise<string>;
 
-  protected abstract save(filename: string): boolean;
+  protected abstract save(filename: string): string;
 
   protected clearText(text: string): string {
     return text.trim().replace(/\s{2,}/gm, "\n");

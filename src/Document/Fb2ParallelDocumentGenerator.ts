@@ -43,17 +43,15 @@ export default class Fb2ParallelDocumentGenerator extends DocumentGenerator {
     return translatedSentences;
   }
 
-  protected save(filename: string): boolean {
-    fs.writeFile(
-      this.path + "/" + filename + ".fb2",
-      this.markup(filename),
-      (err) => {
-        if (err) {
-          throw new Error(JSON.stringify(err));
-        }
-      }
-    );
+  protected save(filename: string): string {
+    let path = this.path + "/" + filename + ".fb2";
 
-    return true;
+    fs.writeFile(path, this.markup(filename), (err) => {
+      if (err) {
+        throw new Error(JSON.stringify(err));
+      }
+    });
+
+    return path;
   }
 }
