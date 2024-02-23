@@ -1,14 +1,15 @@
 {
-  "name": "trans-ts",
+  "name": "doc-translator-ts",
   "type": "module",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "Паралеллный первеодчик FB2-формат (TypeScript)",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --watch --project ./"
+    "watch": "tsc --watch --project ./",
+    "build": "tsc --project ./"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "fs": "^0.0.1-security"
   },
