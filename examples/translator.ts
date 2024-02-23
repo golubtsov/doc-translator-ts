@@ -1,13 +1,19 @@
 import LibreTranslator from "../src/Translator/LibreTranslator.js";
+import * as path from "path";
+import fs from "fs";
+
+const dirname = path.dirname("./");
 
 let translator = new LibreTranslator("http://localhost:5000/translate");
 
-let str = "Hello. House.";
+let data = fs.readFileSync(dirname + "/build/text.txt");
 
-str.split("\n").forEach((word) => {
-  let w = "";
+let words = data.toString().split("\n");
 
-  translator.translate(word, "ru").then((data) => {
-    console.log(data["translatedText"]);
-  });
-});
+for (let word of words) {
+  let response = await translator.translate(word, "ru");
+  fs.appendFileSync(
+    dirname + "/build/res.txt",
+    response["translatedText"] + "\n"
+  );
+}

@@ -5,7 +5,7 @@ export default abstract class DocumentGenerator {
   protected lang: string;
   protected path: string;
   protected text: string;
-  protected translatedText: string;
+  protected translatedText: string = "";
   protected translator: TranslatorAbstract;
 
   constructor(lang: string, path: string) {
@@ -29,21 +29,38 @@ export default abstract class DocumentGenerator {
     return this.save(filename);
   }
 
-  public generate(text: string, filename: string) {
+  public async generate(text: string, filename: string): Promise<boolean> {
     this.text = this.clearText(text);
 
-    this.splitByParagraphs();
+    await this.splitByParagraphs();
 
     return this.save(filename);
   }
 
-  protected abstract splitByParagraphs(): void;
+  protected abstract splitByParagraphs(): Promise<void>;
 
-  protected abstract splitBySentences(paragraph: string): Promise<any>;
+  protected abstract splitBySentences(paragraph: string): Promise<string>;
 
   protected abstract save(filename: string): boolean;
 
   protected clearText(text: string): string {
     return text.trim().replace(/\s{2,}/gm, "\n");
+  }
+
+  protected markup(filename: string): string {
+    return `<?xml version='1.0' encoding='utf-8'?>
+       <FictionBook>
+            <description>
+                <title-info>
+                    <book-title>${filename}</book-title>
+                </title-info>
+                <publish-info>
+                    <book-name>${filename}</book-name>
+                </publish-info>   
+            </description>
+            <body>
+                <section>${this.translatedText}</section>
+            </body>
+       </FictionBook>`;
   }
 }

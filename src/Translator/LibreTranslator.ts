@@ -18,6 +18,6 @@ export default class LibreTranslator extends TranslatorAbstract {
       headers: { "Content-Type": "application/json" },
     });
 
-    return await response.json();
+    return response.json();
   }
 }

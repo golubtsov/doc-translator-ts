@@ -9,41 +9,50 @@ export default class Fb2ParallelDocumentGenerator extends DocumentGenerator {
     this.translator = new LibreTranslator("http://localhost:5000/translate");
   }
 
-  protected splitByParagraphs(): void {
+  protected async splitByParagraphs(): Promise<void> {
     let paragraphs = this.text.split("\n");
 
-    paragraphs.map(async (paragraph) => {
-      this.translatedText = "";
-      // this.translatedText += `p>${this.splitBySentences(paragraph)}</p>`;
-
-      let w = await this.splitBySentences(paragraph);
-      
-      console.log(w);
-      
-    });
+    for (const paragraph of paragraphs) {
+      this.translatedText += (await this.splitBySentences(paragraph)) + "\n";
+    }
   }
 
-  protected splitBySentences(paragraph: string): Promise<any> {
-    return new Promise(() => {
-      let translatedSentences = "";
+  protected async splitBySentences(paragraph: string): Promise<string> {
+    let translatedSentences = "";
 
-      let sentences = paragraph.split(". ");
+    let sentences = paragraph.split(". ");
 
-      sentences.map(async (sentence, index) => {
-        let translated = await this.translator.translate(sentence, this.lang);
-        translatedSentences += translated["translatedText"] + "";
-      });
+    let index = 0;
 
-      return translatedSentences;
-    });
+    for (const sentence of sentences) {
+      let translated = await this.translator.translate(sentence, this.lang);
+
+      translatedSentences +=
+        "<strong>" +
+        sentence +
+        "</strong>" +
+        " (" +
+        translated["translatedText"] +
+        ")";
+
+      translatedSentences += index == sentences.length - 1 ? " " : ". ";
+
+      index++;
+    }
+
+    return translatedSentences;
   }
 
   protected save(filename: string): boolean {
-    fs.writeFile(filename + ".fb2", this.translatedText, (err) => {
-      if (err) {
-        throw new Error(JSON.stringify(err));
+    fs.writeFile(
+      this.path + "/" + filename + ".fb2",
+      this.markup(filename),
+      (err) => {
+        if (err) {
+          throw new Error(JSON.stringify(err));
+        }
       }
-    });
+    );
 
     return true;
   }
