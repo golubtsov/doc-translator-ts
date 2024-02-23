@@ -3,7 +3,7 @@
 Компилирует TypeScript
 
 ```
-npm run watch
+npm run build
 ```
 
 ```
