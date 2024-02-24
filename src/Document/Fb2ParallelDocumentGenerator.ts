@@ -1,6 +1,5 @@
 import fs from "fs";
 import DocumentGenerator from "./DocumentGenerator.js";
-import { log } from "console";
 import LibreTranslator from "../Translator/LibreTranslator.js";
 
 export default class Fb2ParallelDocumentGenerator extends DocumentGenerator {
