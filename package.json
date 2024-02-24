@@ -8,7 +8,7 @@
     "watch": "tsc --watch --project ./",
     "build": "tsc --project ./"
   },
-  "author": "Никита Голубцов",
+  "author": "Nikita Golubtsov",
   "url": "https://github.com/golubtsov/doc-translator-ts",
   "license": "MIT",
   "dependencies": {
