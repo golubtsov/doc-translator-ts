@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "description": "Паралеллный первеодчик FB2-формат (TypeScript)",
-  "main": "",
+  "main": "index.js",
   "scripts": {
     "watch": "tsc --watch --project ./",
     "build": "tsc --project ./"

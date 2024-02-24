@@ -29,7 +29,7 @@ export default abstract class DocumentGenerator {
     return this.save(filename);
   }
 
-  public async generate(text: string, filename: string): Promise<boolean> {
+  public async generate(text: string, filename: string): Promise<string> {
     this.text = this.clearText(text);
 
     await this.splitByParagraphs();

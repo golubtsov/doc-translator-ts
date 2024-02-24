@@ -8,4 +8,4 @@ let docGen: Fb2ParallelDocumentGenerator = new Fb2ParallelDocumentGenerator(
   dirname + "/build/"
 );
 
-docGen.generate("Hello. House.", "res");
+docGen.generate("Hello. House.", "res").then((res) => console.log(res));
