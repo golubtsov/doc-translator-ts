@@ -1,12 +1,10 @@
 import fs from "fs";
-import TranslatorAbstract from "../Translator/TranslatorAbstract";
 
 export default abstract class DocumentGenerator {
   protected lang: string;
   protected path: string;
   protected text: string;
   protected translatedText: string = "";
-  protected translator: TranslatorAbstract;
 
   constructor(lang: string, path: string) {
     this.lang = lang;

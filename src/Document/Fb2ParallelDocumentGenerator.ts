@@ -1,11 +1,18 @@
 import fs from "fs";
-import DocumentGenerator from "./DocumentGenerator.js";
-import LibreTranslator from "../Translator/LibreTranslator.js";
+import DocumentGenerator from "./DocumentGenerator";
+import LibreTranslator from "../Translator/LibreTranslator";
+import TranslatorAbstract from "../Translator/TranslatorAbstract";
 
 export default class Fb2ParallelDocumentGenerator extends DocumentGenerator {
+  protected translator: TranslatorAbstract;
+
   constructor(lang: string, path: string) {
     super(lang, path);
     this.translator = new LibreTranslator("http://localhost:5000/translate");
+  }
+
+  public setNewTranslator(translator: TranslatorAbstract) {
+    this.translator = translator;
   }
 
   protected async splitByParagraphs(): Promise<void> {
@@ -44,6 +51,9 @@ export default class Fb2ParallelDocumentGenerator extends DocumentGenerator {
 
   protected save(filename: string): string {
     let path = this.path + "/" + filename + ".fb2";
+
+    console.log(fs);
+    
 
     fs.writeFile(path, this.markup(filename), (err) => {
       if (err) {

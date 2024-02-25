@@ -1,4 +1,4 @@
-import TranslatorAbstract from "./TranslatorAbstract.js";
+import TranslatorAbstract from "./TranslatorAbstract";
 
 export default class LibreTranslator extends TranslatorAbstract {
   protected translatedTextKey: string = "translatedText";
