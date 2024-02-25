@@ -4,9 +4,16 @@
         "module": "ES2022",
         "moduleResolution": "Bundler",
         "removeComments": true,
-        "outDir": "build",
-        "sourceMap": true,
+        "outDir": "dist",
+        "sourceMap": false,
         "noEmitOnError": true,
-        "forceConsistentCasingInFileNames": true
-    }
+        "forceConsistentCasingInFileNames": true,
+        "declaration": true
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": [
+        "node_modules", 
+        "dist", 
+        "examples/**/*.ts"
+    ]
 }

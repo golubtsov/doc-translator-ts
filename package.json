@@ -1,9 +1,12 @@
 {
-  "name": "doc-translator-ts",
+  "name": "doc-translator",
   "type": "module",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Паралеллный первеодчик FB2-формат (TypeScript)",
-  "main": "./build/src/index.js",
+  "main": "./dist/src/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "watch": "tsc --watch --project ./",
     "build": "tsc --project ./"

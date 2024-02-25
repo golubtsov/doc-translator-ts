@@ -1,11 +1,4 @@
-import LibreTranslator from "./Translator/LibreTranslator.js";
-import Fb2ParallelDocumentGenerator from "./Document/Fb2ParallelDocumentGenerator.js";
-import TranslatorAbstract from "./Translator/TranslatorAbstract.js";
-import DocumentGenerator from "./Document/DocumentGenerator.js";
-
-export default {
-  LibreTranslator,
-  TranslatorAbstract,
-  Fb2ParallelDocumentGenerator,
-  DocumentGenerator,
-};
+export { default as LibreTranslator } from "./Translator/LibreTranslator.js";
+export { default as Fb2ParallelDocumentGenerator } from "./Document/Fb2ParallelDocumentGenerator.js";
+export { default as TranslatorAbstract } from "./Translator/TranslatorAbstract.js";
+export { default as DocumentGenerator } from "./Document/DocumentGenerator.js";

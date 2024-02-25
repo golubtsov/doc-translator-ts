@@ -9,3 +9,8 @@ npm run build
 ```
 npm run watch
 ```
+
+```
+npm publish --dry-run
+npm publish
+```
